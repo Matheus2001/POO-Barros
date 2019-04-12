@@ -25,7 +25,7 @@ public void exibir(){
     System.out.println("<<<<<<<< -Residência do funcionário: " + endereco);
     System.out.println("<<<<<<<< -Telefone celular: " + telefone);
     System.out.println("<<<<<<<< -Sua idade: " + idade);
-    System.out.println("<<<<<<<< -Salário recebido: " + salario);
+    System.out.println("<<<<<<<< -Salário recebido: " + salario + "R$");
     System.out.println("<<<<<<<< -Dependentes: " + num_dependentes);
 }
 public void alterarSalario(double salario){
