@@ -53,7 +53,7 @@ class Controle{
     public int getCanal(){
        return tv.getCanal();
     }
-    public void trocarCanal(int canal){
+    public void trocarCanal(){
         tv.trocarCanal(canal);
     }
     public boolean getLigado(){
@@ -68,7 +68,7 @@ class Controle{
 }
 public class Principal{
     public static void main(String[]args){
-        Tv t = new Tv(85,9,true);
+        Tv t = new Tv(90,5,true);
         Controle c = new Controle(t);
          System.out.println(c.getTv());
          System.out.println(c.getVolume());
