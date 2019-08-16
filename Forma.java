@@ -1,4 +1,4 @@
-public abstract class Forma {
+abstract class Forma {
   public Forma(){
 }
   public abstract double calcularArea();{
@@ -6,7 +6,7 @@ public abstract class Forma {
   public abstract double calcularPerimetro();{
 }
 }
-public class Retangulo extends Forma {
+class Retangulo extends Forma {
   float base;
   private float altura;
   public Retangulo (float base, float altura){
@@ -20,7 +20,7 @@ public double calcularArea(){
     return (2 * base) + (2 * altura);
 }
 }
-public class Circulo extends Forma {
+class Circulo extends Forma {
   private float raio;
   private float pi = 3.141616f;
 
@@ -34,7 +34,7 @@ public class Circulo extends Forma {
     return (2 * pi * raio);
 }
 }
- public class Quadrado extends Retangulo {
+class Quadrado extends Retangulo {
     public Quadrado (float base, float altura){
     super (base , altura);
 }
@@ -45,14 +45,14 @@ public class Circulo extends Forma {
     return (4 * base);
 }
 }
-  public class Principal {
-    public static void main (String[] args){
-      Retangulo r = new Retangulo(2.0f , 3.0f);
-      System.out.println(r.calcularArea());
-      System.out.println(r.calcularPerimetro());
-      System.out.println(c.calcularArea()); System.out.println(c.calcularPerimetro());
-      Quadrado q = new Quadrado(3.0f, 4.0f);
-      System.out.println(q.calcularArea());
-      System.out.println(q.calcularPerimetro()); .
+class Principal {
+  public static void main (String[] args){
+    Retangulo r = new Retangulo(2.0f , 3.0f);
+    System.out.println(r.calcularArea());
+    System.out.println(r.calcularPerimetro());
+    //System.out.println(c.calcularArea()); //System.out.println(c.calcularPerimetro());
+    Quadrado q = new Quadrado(3.0f, 4.0f);
+    System.out.println(q.calcularArea());
+    System.out.println(q.calcularPerimetro()); 
 }
 }
