@@ -30,9 +30,45 @@ class MilitarAeronautica extends Militar{
   public boolean podeProgredir(){
     if (duraPatente > 2 && horaVoo > 100){
       return true;
-    }else {
+    }
+    else {
       return false;
     }
   }
 }
-class MilitarExercito
+class MilitarExercito extends Militar {
+  private boolean particGuerra;
+  private boolean vencGuerra;
+
+  public MilitarExercito(boolean particGuerra, boolean vencGuerra,String patente,int matricula){
+    super(patente, matricula);
+    this.particGuerra = particGuerra;
+    this.vencGuerra = vencGuerra;
+  }
+  public boolean podeProgredir(){
+    if (particGuerra == true && vencGuerra == true){
+      return true; 
+    }
+    else {
+      return false;
+    }
+  }
+}
+class MilitarMarinha extends Militar {
+  private boolean conserAviao;
+
+  public MilitarMarinha(boolean conserAviao, String patente, int matricula){
+    super(patente, matricula);
+    this.conserAviao = conserAviao;
+  }
+  public boolean podeProgredir(){
+    if (conserAviao == true){
+      return true; 
+    }
+    else {
+      return false;
+    }
+  }
+}
+
+
