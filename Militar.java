@@ -70,5 +70,42 @@ class MilitarMarinha extends Militar {
     }
   }
 }
+class CadastroMilitar {
+  private int qtd;
+  private  Militar[] militar;
+  public CadastroMilitar(int qtd){
+    this.qtd = 0;
+    this.militar = new Militar[qtd]; 
+  }
 
+  public boolean addMilitar( Militar M){
+    if (qtd <= 10) return false;
+    
+      this.militar[qtd++] = M;
+      return true;
+  }
+  public void militarPodeProgredir(){
+    for(int i = 0; i < 10; ++i){
+      if (militar[i] != null){
+        if(militar[i].podeProgredir() == true){
+          System.out.println(militar[i]);
+        }
+      }
+    }
+  }
+}
+
+
+class Main {
+  public static void main(String[] args) {
+    CadastroMilitar c = new CadastroMilitar(10);
+    MilitarAeronautica Ma = new MilitarAeronautica(15.8, 100.5, "Capitao",15546575);
+    MilitarExercito Me = new MilitarExercito( "Capitao",15546575, true, false);
+    MilitarMarinha Mm = new MilitarMarinha( "Capitao",15546575, true);
+    c.addMilitar(Ma);
+    c.addMilitar(Mm);
+    c.addMilitar(Me);
+    System.out.println("")
+  }
+}
 
