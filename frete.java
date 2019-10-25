@@ -79,9 +79,6 @@ class CadastroFrete  {
   public double calcularFrete(){
     double total = 0;
     for (int i = 0; i < fretes.size(); ++i){
-     if (fretes.get(i) != null) {
-       total = total + fretes.get(i).calcularFrete();
-     }
     }
 
     return total;
