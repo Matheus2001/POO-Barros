@@ -1,111 +1,110 @@
-abstract class Militar {
-  private String patente;
-  private int matricula;
-  
+import java.util.ArrayList;
+import java.util.List;
 
-  public Militar(String patente, int matricula){
-    this.patente = patente;
-    this.matricula = matricula;
-  }
-  public String getpatente(){
-    return patente;
-  }
-  public int getMatricula(){
-    return matricula;
-  }
-  
+abstract class imposto implements tributo{
+  private String nome, descricao;
+  private double taxa;
 
-  public abstract boolean podeProgredir();
+  public imposto(String nome, String descricao, double taxa){
+    this.nome = nome;
+    this.descricao = descricao;
+    this.taxa = taxa;
+  }
+
+  public String getNome(){
+    return nome;
+  }
+
+  public String getDescricao(){
+    return descricao;
+  }
+
+  public double getTaxa(){
+    return taxa;
+  }
+
 }
 
-class MilitarAeronautica extends Militar{
-  private double duraPatente;
-  private double horaVoo;
+  interface tributo{
+    public double calcular();
+  }
 
-  public MilitarAeronautica(double duraPatente, double horaVoo,String patente, int matricula){
-    super (patente, matricula);
-    this.duraPatente = duraPatente;
-    this.horaVoo = horaVoo;
+class IR extends imposto{
+  private double vrenda;
+
+  public IR(String nome, String descricao, double taxa, double vrenda){
+    super(nome, descricao, taxa);
+    this.vrenda = vrenda;
   }
-  public boolean podeProgredir(){
-    if (duraPatente > 2 && horaVoo > 100){
-      return true;
-    }
-    else {
-      return false;
-    }
+
+  public double calcular(){
+    return getTaxa() * vrenda;
   }
+
+
 }
-class MilitarExercito extends Militar {
-  private boolean particGuerra;
-  private boolean vencGuerra;
 
-  public MilitarExercito(boolean particGuerra, boolean vencGuerra,String patente,int matricula){
-    super(patente, matricula);
-    this.particGuerra = particGuerra;
-    this.vencGuerra = vencGuerra;
-  }
-  public boolean podeProgredir(){
-    if (particGuerra == true && vencGuerra == true){
-      return true; 
-    }
-    else {
-      return false;
-    }
-  }
-}
-class MilitarMarinha extends Militar {
-  private boolean conserAviao;
+class IPTU extends imposto {
+  private double vimovel;
 
-  public MilitarMarinha(boolean conserAviao, String patente, int matricula){
-    super(patente, matricula);
-    this.conserAviao = conserAviao;
-  }
-  public boolean podeProgredir(){
-    if (conserAviao == true){
-      return true; 
-    }
-    else {
-      return false;
-    }
-  }
-}
-class CadastroMilitar {
-  private int qtd;
-  private  Militar[] militar;
-  public CadastroMilitar(int qtd){
-    this.qtd = 0;
-    this.militar = new Militar[qtd]; 
+  public IPTU(String nome, String descricao, double taxa, double vimovel){
+    super(nome, descricao, taxa);
+    this.vimovel = vimovel;
   }
 
-  public boolean addMilitar( Militar M){
-    if (qtd <= 10) return false;
-    
-      this.militar[qtd++] = M;
-      return true;
+  public double calcular(){
+    return getTaxa() * vimovel;
   }
-  public void militarPodeProgredir(){
-    for(int i = 0; i < 10; ++i){
-      if (militar[i] != null){
-        if(militar[i].podeProgredir() == true){
-          System.out.println(militar[i]);
-        }
-      }
-    }
-  }
+
 }
 
 
-class Main {
-  public static void main(String[] args) {
-    CadastroMilitar c = new CadastroMilitar(10);
-    MilitarAeronautica Ma = new MilitarAeronautica(15.8, 100.5, "Capitao",15546575);
-    MilitarExercito Me = new MilitarExercito( "Capitao",15546575, true, false);
-    MilitarMarinha Mm = new MilitarMarinha( "Capitao",15546575, true);
-    c.addMilitar(Ma);
-    c.addMilitar(Mm);
-    c.addMilitar(Me);
-    System.out.println("")
+class IPVA extends imposto {
+  private double vcarro;
+
+  public IPVA(String nome, String descricao, double taxa, double vcarro){
+    super(nome, descricao, taxa);
+    this.vcarro = vcarro;
   }
+
+  public double calcular(){
+    return getTaxa() * vcarro;
+  }
+
 }
 
+class contribuinte {
+  private String nome;
+  private List<imposto> Impostos;
+
+  public contribuinte (String nome){
+    this.nome = nome;
+    this.Impostos = new ArrayList<imposto>();
+  }
+  public boolean addImposto(imposto I){
+    this.Impostos.add(I);
+    return true;
+   }
+
+  public double calcular(){ 
+    double total = 0;
+    for (int i = 0; i < Impostos.size(); ++i){ 
+      total = total + Impostos.get(i).calcular(); //polimofismo } }
+}
+    return total;
+}10
+}
+public class Main{
+  public static void main(String args[]){
+    contribuinte c = new contribuinte("jose");
+    IR im = new IR("Italo", "tgyudggruy", 50.0, 25.0);
+    IPTU ip = new IPTU("MAThEUS", "tgyufruy", 70.0, 5.0);
+    IPVA ia = new IPVA("CORNOOOO", "tgyufyhuy", 20.0, 75.0);
+    c.addImposto(im);
+    c.addImposto(ip);
+    c.addImposto(ia);
+    System.out.println(c.calcular());
+  }
+
+
+}
